@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="miniFB\include\MiniFB.h" />
     <ClInclude Include="miniFB\include\MiniFB_cpp.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="miniFB\src\MiniFB_common.c" />
     <ClCompile Include="miniFB\src\MiniFB_cpp.cpp" />

@@ -8,23 +8,19 @@
 #include "Types.h"
 #include "Line.h"
 #include "Point.h"
+#include "Color.h"
 
 #define RGB_TO_UINT(r, g, b)    (((uint32_t) r) << 16) | (((uint32_t) g) << 8) | ((uint32_t) b)
 
 #define FADE 0.99;
 #define WIDTH      800
 #define HEIGHT     600
-static unsigned int g_buffer0[WIDTH * HEIGHT];
-static unsigned int g_buffer1[WIDTH * HEIGHT];
+static Color g_buffer0[WIDTH * HEIGHT * sizeof(Color)];
+static Color g_buffer1[WIDTH * HEIGHT * sizeof(Color)];
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void uintToRgb(uint c, uint &r, uint &g, uint &b)
-{
-	r = (c & 0xFF0000) >> 16;
-	g = (c & 0x00FF00) >> 8;
-	b = (c & 0x0000FF);
-}
+
 
 int main()
 {
@@ -52,7 +48,7 @@ int main()
 
 		for (i = 0; i < _bufferData._size; i++)
 		{
-			_bufferData._currentBuffer[i] = 0;
+			_bufferData._currentBuffer[i] = Color::black;
 		}
 
 		for (i = 0; i < 100; ++i)
