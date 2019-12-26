@@ -13,9 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\miniFB">
+      <UniqueIdentifier>{268e9ac9-4be1-4964-a9e6-0743a87a630e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\miniFB">
+      <UniqueIdentifier>{d4cc5edf-5a2b-4a22-8099-44a474e4f4ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="miniFB\include\MiniFB.h">
+      <Filter>Fichiers d%27en-tête\miniFB</Filter>
+    </ClInclude>
+    <ClInclude Include="miniFB\include\MiniFB_cpp.h">
+      <Filter>Fichiers d%27en-tête\miniFB</Filter>
+    </ClInclude>
+    <ClInclude Include="miniFB\include\MiniFB_enums.h">
+      <Filter>Fichiers d%27en-tête\miniFB</Filter>
+    </ClInclude>
+    <ClInclude Include="miniFB\src\MiniFB_internal.h">
+      <Filter>Fichiers sources\miniFB</Filter>
+    </ClInclude>
+    <ClInclude Include="miniFB\src\WindowData.h">
+      <Filter>Fichiers sources\miniFB</Filter>
+    </ClInclude>
+    <ClInclude Include="miniFB\src\windows\WindowData_Win.h">
+      <Filter>Fichiers sources\miniFB</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -24,6 +57,24 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="visualizer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="miniFB\src\MiniFB_common.c">
+      <Filter>Fichiers sources\miniFB</Filter>
+    </ClCompile>
+    <ClCompile Include="miniFB\src\MiniFB_cpp.cpp">
+      <Filter>Fichiers sources\miniFB</Filter>
+    </ClCompile>
+    <ClCompile Include="miniFB\src\MiniFB_internal.c">
+      <Filter>Fichiers sources\miniFB</Filter>
+    </ClCompile>
+    <ClCompile Include="miniFB\src\windows\WinMiniFB.c">
+      <Filter>Fichiers sources\miniFB</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
