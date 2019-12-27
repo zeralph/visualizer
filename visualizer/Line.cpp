@@ -8,7 +8,7 @@ void Line::Draw(Point* p1, Point* p2, BufferData* bufferData)
 	float y1 = p1->_y;
 	float x2 = p2->_x;
 	float y2 = p2->_y;
-	Color color = Color(255, 255, 255);
+	Color color = p1->_c;
 	Color* buffer = bufferData->_currentBuffer;
 	const bool steep = abs(y2 - y1) > abs(x2 - x1);
 	if (steep)

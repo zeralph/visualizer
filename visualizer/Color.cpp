@@ -9,9 +9,9 @@ void Color::Merge(const Color c, float factor)
 
 void Color::Add(const Color c, float factor)
 {
-	_r += c._r * factor;
-	_g += c._g * factor;
-	_b += c._b * factor;
+	_r = CLAMP((uint)((float)_r + (float)c._r * factor), (uint)0, (uint)255);
+	_g = CLAMP((uint)((float)_g + (float)c._g * factor), (uint)0, (uint)255);
+	_b = CLAMP((uint)((float)_b + (float)c._b * factor), (uint)0, (uint)255);
 }
 
 /******************************/

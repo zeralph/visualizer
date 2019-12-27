@@ -9,15 +9,18 @@
 #include "Line.h"
 #include "Point.h"
 #include "Color.h"
+#include "Filter.h"
+#include "Transform.h" 
 
 #define RGB_TO_UINT(r, g, b)    (((uint32_t) r) << 16) | (((uint32_t) g) << 8) | ((uint32_t) b)
 
 #define FADE 0.99;
-#define WIDTH      800
-#define HEIGHT     600
+
+
 static Color g_buffer0[WIDTH * HEIGHT * sizeof(Color)];
 static Color g_buffer1[WIDTH * HEIGHT * sizeof(Color)];
 static uint g_finalBuffer[WIDTH * HEIGHT];
+static Color LineColor[100];
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -39,6 +42,11 @@ int main()
 	struct Window *window = mfb_open_ex("Noise Test", WIDTH, HEIGHT, WF_RESIZABLE);
 	if (!window)
 		return 0;
+
+	for (int i = 0; i < 100; i++)
+	{
+		LineColor[i].Rand();
+	}
 
 	for (;;)
 	{
@@ -62,24 +70,23 @@ int main()
 		{
 			p1._x = step * i;
 			p1._y = data[i];
+			p1._c = LineColor[i];
 			p2._x = step * (i+1);
 			p2._y = data[i + 1];
+			p2._c = LineColor[i+1];
 			Line::Draw(&p1, &p2, &_bufferData);
 		}
 		//Sleep(1000);
 
 		//merge buffers
+		//Filter::ApplyNothing(_bufferData._backBuffer, _bufferData._width, _bufferData._height);
+		//Transform::Translate(_bufferData._backBuffer, _bufferData._width, _bufferData._height, 10, 10);
+		Transform::Rotate(_bufferData._backBuffer, _bufferData._width, _bufferData._height, -5.0f, WIDTH/2, HEIGHT/2);
+//		Filter::ApplyGaussianBlur(_bufferData._backBuffer, _bufferData._width, _bufferData._height);
 		Color c;
 		for (i = 0; i < _bufferData._size; i++)
 		{
-			/*
-			uint r, g, b;
-			uintToRgb(_bufferData._backBuffer[i+WIDTH], r, g, b);
-			r *= FADE;
-			g *= FADE;
-			b *= FADE;
-			*/
-			_bufferData._currentBuffer[i].Add(_bufferData._backBuffer[i], 0.5f);
+			_bufferData._currentBuffer[i].Add(_bufferData._backBuffer[i], 0.9f);
 			_bufferData._finalBuffer[i] = _bufferData._currentBuffer[i].toUint();
 		}
 
