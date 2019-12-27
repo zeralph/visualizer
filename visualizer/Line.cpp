@@ -1,5 +1,6 @@
 #include "Line.h"
 #include <utility>
+#include "Color.h"
 
 void Line::Draw(Point* p1, Point* p2, BufferData* bufferData)
 {

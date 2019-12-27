@@ -17,7 +17,7 @@
 #define HEIGHT     600
 static Color g_buffer0[WIDTH * HEIGHT * sizeof(Color)];
 static Color g_buffer1[WIDTH * HEIGHT * sizeof(Color)];
-
+static uint g_finalBuffer[WIDTH * HEIGHT];
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -31,6 +31,7 @@ int main()
 	BufferData _bufferData;
 	_bufferData._currentBuffer = g_buffer0;
 	_bufferData._backBuffer = g_buffer1;
+	_bufferData._finalBuffer = g_finalBuffer;
 	_bufferData._height = HEIGHT;
 	_bufferData._width = WIDTH;
 	_bufferData._size = WIDTH * HEIGHT;
@@ -65,21 +66,24 @@ int main()
 			p2._y = data[i + 1];
 			Line::Draw(&p1, &p2, &_bufferData);
 		}
-		//Sleep(33);
+		//Sleep(1000);
 
 		//merge buffers
-		for (i = 0; i < _bufferData._size - WIDTH; i++)
+		Color c;
+		for (i = 0; i < _bufferData._size; i++)
 		{
+			/*
 			uint r, g, b;
 			uintToRgb(_bufferData._backBuffer[i+WIDTH], r, g, b);
 			r *= FADE;
 			g *= FADE;
 			b *= FADE;
-
-			_bufferData._currentBuffer[i] += RGB_TO_UINT(r, g, b);
+			*/
+			_bufferData._currentBuffer[i].Add(_bufferData._backBuffer[i], 0.5f);
+			_bufferData._finalBuffer[i] = _bufferData._currentBuffer[i].toUint();
 		}
 
-		state = mfb_update(window, _bufferData._currentBuffer);
+		state = mfb_update(window, _bufferData._finalBuffer);
 		if (state != STATE_OK) {
 			window = 0x0;
 			break;

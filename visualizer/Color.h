@@ -19,6 +19,10 @@ public:
 	};
 	~Color() {};
 public:
+	uint toUint() { _intValue = (((uint)_r) << 16) | (((uint)_g) << 8) | ((uint)_b); return _intValue; }
+	void Merge(const Color c, float factor);
+	void Add(const Color c, float factor);
+public:
 	uint _r;
 	uint _g;
 	uint _b;
